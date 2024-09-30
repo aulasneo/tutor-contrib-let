@@ -1,0 +1,2 @@
+recursive-include tutorlet/patches *
+recursive-include tutorlet/templates *
