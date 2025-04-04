@@ -1,0 +1,48 @@
+{% if LET_ENABLE_CERTIFICATES_AUTOGENERATION %}
+(./manage.py lms waffle_switch --list | grep certificates.auto_certificate_generation) || ./manage.py lms waffle_switch --create certificates.auto_certificate_generation on
+{% else %}
+./manage.py lms waffle_delete --switches certificates.auto_certificate_generation
+{% endif %}
+
+{% if LET_ENABLE_ANONYMOUS_COURSEWARE_ACCESS %}
+(./manage.py lms waffle_flag --list | grep seo.enable_anonymous_courseware_access) || ./manage.py lms waffle_flag --create --everyone seo.enable_anonymous_courseware_access
+{% else %}
+./manage.py lms waffle_delete --flags seo.enable_anonymous_courseware_access
+{% endif %}
+
+{% if LET_ENABLE_COURSE_EXIT_PAGE %}
+(./manage.py lms waffle_flag --list | grep courseware.microfrontend_course_exit_page) || ./manage.py lms waffle_flag --create --everyone courseware.microfrontend_course_exit_page
+{% else %}
+./manage.py lms waffle_delete --flags courseware.microfrontend_course_exit_page
+{% endif %}
+
+{% if LET_VIDEO_IMAGE_UPLOAD_ENABLED %}
+(./manage.py lms waffle_switch --list | grep videos.video_image_upload_enabled) || ./manage.py lms waffle_switch --create videos.video_image_upload_enabled on
+{% else %}
+./manage.py lms waffle_delete --switches videos.video_image_upload_enabled
+{% endif %}
+
+{% if LET_MFE_PROGRESS_MILESTONES %}
+(./manage.py lms waffle_flag --list | grep courseware.mfe_progress_milestones) || ./manage.py lms waffle_flag --create --everyone courseware.mfe_progress_milestones
+{% else %}
+./manage.py lms waffle_delete --flags courseware.mfe_progress_milestones
+{% endif %}
+
+{% if LET_MFE_PROGRESS_MILESTONES_STREAK_CELEBRATION %}
+(./manage.py lms waffle_flag --list | grep courseware.mfe_progress_milestones_streak_celebration) || ./manage.py lms waffle_flag --create --everyone courseware.mfe_progress_milestones_streak_celebration
+{% else %}
+./manage.py lms waffle_delete --flags courseware.mfe_progress_milestones_streak_celebration
+{% endif %}
+
+{% if LET_MFE_COURSEWARE_SEARCH %}
+(./manage.py lms waffle_flag --list | grep courseware.mfe_courseware_search) || ./manage.py lms waffle_flag --create --everyone courseware.mfe_courseware_search
+{% else %}
+./manage.py lms waffle_delete --flags courseware.mfe_courseware_search
+{% endif %}
+
+{% if LET_ENABLE_NAVIGATION_SIDEBAR %}
+(./manage.py lms waffle_flag --list | grep courseware.enable_navigation_sidebar) || ./manage.py lms waffle_flag --create --everyone courseware.enable_navigation_sidebar
+{% else %}
+./manage.py lms waffle_delete --flags courseware.enable_navigation_sidebar
+{% endif %}
+

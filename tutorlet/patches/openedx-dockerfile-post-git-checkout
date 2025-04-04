@@ -1,0 +1,6 @@
+{% if LET_PATCH_EDX_PLATFORM %}# Fixes course outline not showing all items in some cases. Remove in Sumac.
+RUN curl -fsSL https://github.com/openedx/edx-platform/commit/8b7a771dc42e395efcce47dc77462a4c80fefc7c.patch | git am
+
+# Fixes course visibility in catalog. Remove in Sumac.
+RUN curl -fsSL https://github.com/openedx/edx-platform/commit/bf862d89e72aab9097166b88729ef4e4e3d46f9d.patch | git am
+{% endif %}

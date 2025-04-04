@@ -5,63 +5,218 @@ from glob import glob
 
 import click
 import importlib_resources
-from tutor import hooks
+import yaml
 
-from .__about__ import __version__
+from tabulate import tabulate
+from tutor import hooks, fmt
+from tutor import config as tutor_config
+
 
 ########################################
 # CONFIGURATION
 ########################################
 
+config = {
+    'defaults': {
+        #
+        # caddyfile patch
+        #
+        "CADDYFILE_PATCH": '',
+
+        #
+        # common-env-features
+        #
+        "ALLOW_HIDING_DISCUSSION_TAB": True,
+        "CUSTOM_COURSES_EDX": True,
+        "ALLOW_COURSE_STAFF_GRADE_DOWNLOADS": True,
+        "CUSTOM_CERTIFICATE_TEMPLATES_ENABLED": True,
+        "ENABLE_ANNOUNCEMENTS": True,
+        "ENABLE_AUTOMATED_SIGNUPS_EXTRA_FIELDS": True,
+        "ENABLE_BULK_ENROLLMENT_VIEW": True,
+        "ENABLE_BULK_USER_RETIREMENT": True,
+        "ENABLE_CHANGE_USER_PASSWORD_ADMIN": True,
+        "ENABLE_MKTG_SITE": False,
+        "ENABLE_ORA_TEAM_SUBMISSIONS": True,
+        "ENABLE_ORA_USERNAMES_ON_DATA_EXPORT": True,
+        "ENABLE_ORA_USER_STATE_UPLOAD_DATA": True,
+        "ENABLE_PASSWORD_RESET_FAILURE_EMAIL": True,
+        "ENABLE_SPECIAL_EXAMS": True,
+        "ENABLE_UNICODE_USERNAME": True,
+        "ENTRANCE_EXAMS": False,
+        "SHOW_PROGRESS_BAR": True,
+        "ENABLE_OTHER_COURSE_SETTINGS": True,
+        "LICENSING": True,
+        "SKIP_EMAIL_VALIDATION": False,
+        "ENABLE_ENTERPRISE_INTEGRATION": False,
+        "ALLOW_AUTOMATED_SIGNUPS": True,
+        "ALLOW_PUBLIC_ACCOUNT_CREATION": True,
+        "ENABLE_MAX_FAILED_LOGIN_ATTEMPTS": True,
+        "COURSES_INVITE_ONLY": False,
+        "ENABLE_COOKIE_CONSENT": False,
+
+        #
+        # discovery-common-settings
+        #
+        "ELASTIC_SEARCH_INDEX_PREFIX": "",
+
+        #
+        # mfe-dockerfile-pre-npm-build-authn
+        #
+        "TOS_AND_HONOR_CODE": "https://{{ LMS_HOST }}/tos",
+        "PRIVACY_POLICY": "https://{{ LMS_HOST }}/privacy",
+
+        #
+        # openedx-auth
+        #
+        "SOCIAL_AUTH_SAML_SP_PRIVATE_KEY": "",
+        "SOCIAL_AUTH_SAML_SP_PUBLIC_CERT": "",
+
+        #
+        # openedx-cms-common-settings
+        #
+        "ENABLE_VIDEO_UPLOAD_PIPELINE": False,
+        "VIDEO_UPLOAD_PIPELINE_ROOT_PATH": "videos",
+        "VIDEO_UPLOAD_PIPELINE_VEM_S3_BUCKET": "",
+        "VIDEO_IMAGE_UPLOAD_ENABLED": True,
+        "ORGANIZATIONS_AUTOCREATE": True,
+
+        #
+        # openedx-common-settings
+        #
+        "MKTG_URLS": {},
+        "DEFAULT_MOBILE_AVAILABLE": True,
+        "ENABLE_COMPREHENSIVE_THEMING": True,
+        # Set to True to prevent using username/password login and registration and only allow
+        #   authentication with third party auth
+        "ENABLE_REQUIRE_THIRD_PARTY_AUTH": False,
+        #  If enabled, courses with a catalog_visibility set to "none"
+        #  will still appear in search results.
+        "SEARCH_SKIP_SHOW_IN_CATALOG_FILTERING": False,  # True by default
+        "WIKI_ENABLED": False,
+        "COURSE_MODE_DEFAULTS": {
+            "name": "Honor",
+            "slug": "honor",
+            "bulk_sku": None,
+            "currency": "usd",
+            "description": None,
+            "expiration_datetime": None,
+            "min_price": 0,
+            "sku": None,
+            "suggested_prices": "",
+            'android_sku': None,
+            'ios_sku': None,
+        },  # Default is audit mode
+        "MKTG_URL_LINK_MAP": {},
+        "MKTG_URL_OVERRIDES": {},
+        "GOOGLE_ANALYTICS_4_ID": None,
+        "SUPPORT_SITE_LINK": '',
+        "SECURITY_PAGE_URL": '#',
+        "ENTERPRISE_MARKETING_FOOTER_QUERY_PARAMS": {},
+        # "SOCIAL_SHARING_SETTINGS"
+        'CUSTOM_COURSE_URLS': True,
+        'DASHBOARD_FACEBOOK': True,
+        "FACEBOOK_BRAND": "",
+        "TWITTER_BRAND": "",
+        'DASHBOARD_TWITTER': False,
+        'DASHBOARD_TWITTER_TEXT': "",
+        'CERTIFICATE_FACEBOOK': True,
+        'CERTIFICATE_FACEBOOK_TEXT': "",
+        'CERTIFICATE_TWITTER': True,
+        'CERTIFICATE_TWITTER_TEXT': "",
+        'CERTIFICATE_LINKEDIN_HONOR_CERT_NAME': '{platform_name} Honor Code Credential for {course_name}',
+        'CERTIFICATE_LINKEDIN_VERIFIED_CERT_NAME': '{platform_name} Verified Credential for {course_name}',
+        'CERTIFICATE_LINKEDIN_PROFESSIONAL_CERT_NAME': '{platform_name} Professional Credential for {course_name}',
+        'CERTIFICATE_LINKEDIN_NO_ID_CERT_NAME': '{platform_name} Professional Credential for {course_name}',
+        "USERNAME_REGEX_PARTIAL": r'[\w .@_+-]+',
+
+        "REGISTRATION_EXTRA_FIELDS": {},
+        "ENABLE_DYNAMIC_REGISTRATION_FIELDS": False,
+        "MAX_FAILED_LOGIN_ATTEMPTS_ALLOWED": 6,
+        "MAX_FAILED_LOGIN_ATTEMPTS_LOCKOUT_PERIOD_SECS": 1800,
+        "RATELIMIT_USE_CACHE": "general",
+        "RATELIMIT_ENABLE": True,
+        "RATELIMIT_RATE": '120/m',
+
+        # Check defaults at https://github.com/openedx/edx-platform/blob/1c14c3a5184b27b344b782dd6ac88f3e64cf2535/lms/envs/common.py#L4905C1-L4912C1
+        "LOGISTRATION_RATELIMIT_RATE": '100/5m',
+        "LOGISTRATION_PER_EMAIL_RATELIMIT_RATE": '30/5m',
+        "LOGISTRATION_API_RATELIMIT": '20/m',
+        "LOGIN_AND_REGISTER_FORM_RATELIMIT": '100/5m',
+        "RESET_PASSWORD_TOKEN_VALIDATE_API_RATELIMIT": '30/7d',
+        "RESET_PASSWORD_API_RATELIMIT": '30/7d',
+        "OPTIONAL_FIELD_API_RATELIMIT": '10/h',
+
+        # Check defaults at https://github.com/openedx/edx-platform/blob/1c14c3a5184b27b344b782dd6ac88f3e64cf2535/lms/envs/common.py#L3444-L3459
+        "REGISTRATION_VALIDATION_RATELIMIT": '30/7d',
+        "REGISTRATION_RATELIMIT": '60/7d',
+
+        # Check default at https://github.com/openedx/edx-platform/blob/1c14c3a5184b27b344b782dd6ac88f3e64cf2535/lms/envs/common.py#L3436-L3441
+        'DEFAULT_THROTTLE_RATES': {},
+
+        # Default at https://github.com/overhangio/tutor/blob/6a87af76b9244ce9a954f424aa17cbaa13c91e3a/tutor/templates/apps/openedx/settings/partials/common_all.py#L91
+        "SITE_ID": 2,
+
+        # Empty by default, here we let other_course_settings show in the API.
+        "COURSE_BLOCKS_API_EXTRA_FIELDS": [
+            ('course', 'other_course_settings')
+        ],
+
+        #
+        # openedx-dockerfile-post-git-checkout
+        #
+        "PATCH_EDX_PLATFORM": True,
+
+
+        #
+        # openedx-lms-common-settings
+        #
+        "ENABLE_COURSE_DISCOVERY": True,
+        "AUTHENTICATION_BACKENDS": [],
+        "SOCIAL_AUTH_OAUTH_SECRETS": {},
+        "COURSE_DISCOVERY_FILTERS": ["org", "language", "modes"],
+        "ENABLE_SAML": True,
+
+        # openedx-lms-production-settings
+        "AUTH_PASSWORD_VALIDATORS": [
+            {
+                'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'
+            },
+            {
+                'NAME': 'common.djangoapps.util.password_policy_validators.MinimumLengthValidator',
+                'OPTIONS': {'min_length': 2}
+            },
+            {
+                'NAME': 'common.djangoapps.util.password_policy_validators.MaximumLengthValidator',
+                'OPTIONS': {'max_length': 75}
+            }
+        ],
+
+        # others waffle flags, switches and settings created at init time
+        "ENABLE_CERTIFICATES_AUTOGENERATION": True,
+        "ENABLE_ANONYMOUS_COURSEWARE_ACCESS": True,
+        "ENABLE_COURSE_EXIT_PAGE": True,
+        "MFE_PROGRESS_MILESTONES": True,
+        "MFE_PROGRESS_MILESTONES_STREAK_CELEBRATION": True,
+        "MFE_COURSEWARE_SEARCH": True,
+        "ENABLE_NAVIGATION_SIDEBAR": True,
+
+    }
+}
+
 hooks.Filters.CONFIG_DEFAULTS.add_items(
     [
-        # Add your new settings that have default values here.
-        # Each new setting is a pair: (setting_name, default_value).
-        # Prefix your setting names with 'LET_'.
-        ("LET_VERSION", __version__),
+        (f"LET_{key}", value) for key, value in config['defaults'].items()
     ]
 )
-
-hooks.Filters.CONFIG_UNIQUE.add_items(
-    [
-        # Add settings that don't have a reasonable default for all users here.
-        # For instance: passwords, secret keys, etc.
-        # Each new setting is a pair: (setting_name, unique_generated_value).
-        # Prefix your setting names with 'LET_'.
-        # For example:
-        ### ("LET_SECRET_KEY", "{{ 24|random_string }}"),
-    ]
-)
-
-hooks.Filters.CONFIG_OVERRIDES.add_items(
-    [
-        # Danger zone!
-        # Add values to override settings from Tutor core or other plugins here.
-        # Each override is a pair: (setting_name, new_value). For example:
-        ### ("PLATFORM_NAME", "My platform"),
-    ]
-)
-
 
 ########################################
 # INITIALIZATION TASKS
 ########################################
 
-# To add a custom initialization task, create a bash script template under:
-# tutorlet/templates/let/tasks/
-# and then add it to the MY_INIT_TASKS list. Each task is in the format:
-# ("<service>", ("<path>", "<to>", "<script>", "<template>"))
 MY_INIT_TASKS: list[tuple[str, tuple[str, ...]]] = [
-    # For example, to add LMS initialization steps, you could add the script template at:
-    # tutorlet/templates/let/tasks/lms/init.sh
-    # And then add the line:
-    ### ("lms", ("let", "tasks", "lms", "init.sh")),
+    ('lms', ("let", "tasks", "lms", "init"))
 ]
 
-
-# For each task added to MY_INIT_TASKS, we load the task template
-# and add it to the CLI_DO_INIT_TASKS filter, which tells Tutor to
-# run it as part of the `init` job.
 for service, template_path in MY_INIT_TASKS:
     full_path: str = str(
         importlib_resources.files("tutorlet")
@@ -70,57 +225,6 @@ for service, template_path in MY_INIT_TASKS:
     with open(full_path, encoding="utf-8") as init_task_file:
         init_task: str = init_task_file.read()
     hooks.Filters.CLI_DO_INIT_TASKS.add_item((service, init_task))
-
-
-########################################
-# DOCKER IMAGE MANAGEMENT
-########################################
-
-
-# Images to be built by `tutor images build`.
-# Each item is a quadruple in the form:
-#     ("<tutor_image_name>", ("path", "to", "build", "dir"), "<docker_image_tag>", "<build_args>")
-hooks.Filters.IMAGES_BUILD.add_items(
-    [
-        # To build `myimage` with `tutor images build myimage`,
-        # you would add a Dockerfile to templates/let/build/myimage,
-        # and then write:
-        ### (
-        ###     "myimage",
-        ###     ("plugins", "let", "build", "myimage"),
-        ###     "docker.io/myimage:{{ LET_VERSION }}",
-        ###     (),
-        ### ),
-    ]
-)
-
-
-# Images to be pulled as part of `tutor images pull`.
-# Each item is a pair in the form:
-#     ("<tutor_image_name>", "<docker_image_tag>")
-hooks.Filters.IMAGES_PULL.add_items(
-    [
-        # To pull `myimage` with `tutor images pull myimage`, you would write:
-        ### (
-        ###     "myimage",
-        ###     "docker.io/myimage:{{ LET_VERSION }}",
-        ### ),
-    ]
-)
-
-
-# Images to be pushed as part of `tutor images push`.
-# Each item is a pair in the form:
-#     ("<tutor_image_name>", "<docker_image_tag>")
-hooks.Filters.IMAGES_PUSH.add_items(
-    [
-        # To push `myimage` with `tutor images push myimage`, you would write:
-        ### (
-        ###     "myimage",
-        ###     "docker.io/myimage:{{ LET_VERSION }}",
-        ### ),
-    ]
-)
 
 
 ########################################
@@ -137,11 +241,6 @@ hooks.Filters.ENV_TEMPLATE_ROOTS.add_items(
 )
 
 hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
-    # For each pair (source_path, destination_path):
-    # templates at ``source_path`` (relative to your ENV_TEMPLATE_ROOTS) will be
-    # rendered to ``source_path/destination_path`` (relative to your Tutor environment).
-    # For example, ``tutorlet/templates/let/build``
-    # will be rendered to ``$(tutor config printroot)/env/plugins/let/build``.
     [
         ("let/build", "plugins"),
         ("let/apps", "plugins"),
@@ -162,68 +261,82 @@ for path in glob(str(importlib_resources.files("tutorlet") / "patches" / "*")):
         hooks.Filters.ENV_PATCHES.add_item((os.path.basename(path), patch_file.read()))
 
 
-########################################
-# CUSTOM JOBS (a.k.a. "do-commands")
-########################################
-
-# A job is a set of tasks, each of which run inside a certain container.
-# Jobs are invoked using the `do` command, for example: `tutor local do importdemocourse`.
-# A few jobs are built in to Tutor, such as `init` and `createuser`.
-# You can also add your own custom jobs:
-
-
-# To add a custom job, define a Click command that returns a list of tasks,
-# where each task is a pair in the form ("<service>", "<shell_command>").
-# For example:
-### @click.command()
-### @click.option("-n", "--name", default="plugin developer")
-### def say_hi(name: str) -> list[tuple[str, str]]:
-###     """
-###     An example job that just prints 'hello' from within both LMS and CMS.
-###     """
-###     return [
-###         ("lms", f"echo 'Hello from LMS, {name}!'"),
-###         ("cms", f"echo 'Hello from CMS, {name}!'"),
-###     ]
-
-
-# Then, add the command function to CLI_DO_COMMANDS:
-## hooks.Filters.CLI_DO_COMMANDS.add_item(say_hi)
-
-# Now, you can run your job like this:
-#   $ tutor local do say-hi --name="Andrés González"
-
-
 #######################################
 # CUSTOM CLI COMMANDS
 #######################################
 
-# Your plugin can also add custom commands directly to the Tutor CLI.
-# These commands are run directly on the user's host computer
-# (unlike jobs, which are run in containers).
+from tutor.commands.config import save, ConfigKeyValParamType
+import typing as t
 
-# To define a command group for your plugin, you would define a Click
-# group and then add it to CLI_COMMANDS:
+@click.command()
+@click.argument(
+    'setting',
+    type=ConfigKeyValParamType(),
+    metavar="KEY=VAL",
+)
+@click.pass_context
+def let(context: click.Context, setting: list[tuple[str, t.Any]],) -> None:
+    """
+    Add a setting to the configuration file.
+    """
+    if setting[0] not in config['defaults']:
+        fmt.echo_error(f"{setting[0]} is not a valid setting.")
+        return
 
+    context.invoke(save, set_vars=[(f"LET_{setting[0]}", setting[1])])
 
-### @click.group()
-### def let() -> None:
-###     pass
+hooks.Filters.CLI_COMMANDS.add_item(let)
 
+@click.option('-o', '--output', default='list', help='Output format (list or table)')
+@click.option('-a', '--all', is_flag=True, default=False,
+              help='Show all values. Otherwise it will show only the non-default values.')
+@click.option('-w', '--width', default=50, help='Maximum column width for table output.')
+@click.command(name='list', help='Show all values.')
+def _list(output: str, all: bool, width: int) -> None:
+    """
+    List all available settings, their type, default and current value.
+    """
+    current_context = click.get_current_context()
+    root = current_context.parent.params.get('root')
+    if root:
+        configuration = tutor_config.load_minimal(root)
+        defaults = tutor_config.load_defaults()
 
-### hooks.Filters.CLI_COMMANDS.add_item(let)
+        data = []
+        for key in sorted(config['defaults'].keys()):
+            let_key = "LET_" + key
+            default = defaults[let_key]
+            type_name = str(type(default))[8:-2]
+            value = configuration.get(let_key)
 
+            if all or value:
+                # truncate long strings for table view
+                if output == 'table':
+                    key = key[:width]
+                    value = str(value)[:width] if value else ''
+                    default = str(default)[:width]
+                data.append((key, type_name, default, value))
 
-# Then, you would add subcommands directly to the Click group, for example:
+        if output == 'table':
+            headers = ["Key", "Type", "Default", "Value"]
+            print(tabulate(data, headers=headers, tablefmt="fancy_grid"))
 
+        elif output == 'list':
+            for row in data:
+                value = row[3] if row[3] else row[2]
+                if isinstance(value, str):
+                    value = f'"{value}"'
+                print(f"LET {row[0]} = {value}")
 
-### @let.command()
-### def example_command() -> None:
-###     """
-###     This is helptext for an example command.
-###     """
-###     print("You've run an example command.")
+        elif output == 'yaml':
+            print(yaml.dump({
+                "LET_"+row[0]: row[3] if row[3] else row[2] for row in data
+            }, default_flow_style=False, line_break=None))
 
+        else:
+            fmt.echo_error(f"Unsupported output format '{output}'.")
 
-# This would allow you to run:
-#   $ tutor let example-command
+    else:
+        fmt.echo_error("Tutor root not specified.")
+
+hooks.Filters.CLI_COMMANDS.add_item(_list)
