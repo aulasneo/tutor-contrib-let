@@ -1,6 +1,6 @@
 # Change log
 
-## Unreleased
+## Version 19.0.0 (2025-04-28)
 - chore: Upgrade requirements for Sumac
 - revert: Remove openedx patches not needed in Sumac
 
