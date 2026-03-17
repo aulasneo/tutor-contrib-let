@@ -63,8 +63,29 @@ config = {
         #
         # mfe-dockerfile-pre-npm-build-authn
         #
-        "TOS_AND_HONOR_CODE": "https://{{ LMS_HOST }}/tos",
-        "PRIVACY_POLICY": "https://{{ LMS_HOST }}/privacy",
+        "DISABLE_ENTERPRISE_LOGIN": None,
+        "ENABLE_AUTO_GENERATED_USERNAME": False,
+        "TOS_AND_HONOR_CODE": None,
+        "TOS_LINK": None,
+        "PRIVACY_POLICY": None,
+        "ENABLE_PROGRESSIVE_PROFILING_ON_AUTHN": None,
+        "ENABLE_POST_REGISTRATION_RECOMMENDATIONS": None,
+        "MARKETING_EMAILS_OPT_IN": None,
+        "SHOW_CONFIGURABLE_EDX_FIELDS": None,
+        "SHOW_REGISTRATION_LINKS": True,
+        "ENABLE_IMAGE_LAYOUT": None,
+        "ACTIVATION_EMAIL_SUPPORT_LINK": None,
+        "AUTHN_PROGRESSIVE_PROFILING_SUPPORT_LINK": None,
+        "LOGIN_ISSUE_SUPPORT_LINK": None,
+        "PASSWORD_RESET_SUPPORT_LINK": None,
+        "POST_REGISTRATION_REDIRECT_URL": None,
+        "SEARCH_CATALOG_URL": None,
+        "BANNER_IMAGE_LARGE": None,
+        "BANNER_IMAGE_MEDIUM": None,
+        "BANNER_IMAGE_SMALL": None,
+        "BANNER_IMAGE_EXTRA_SMALL": None,
+        "GENERAL_RECOMMENDATIONS": None,
+        "INFO_EMAIL": None,
 
         #
         # openedx-auth

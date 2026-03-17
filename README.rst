@@ -413,6 +413,9 @@ ENABLE_DYNAMIC_REGISTRATION_FIELDS
 
 When enabled, this toggle adds fields configured in
 `REGISTRATION_EXTRA_FIELDS`_ to the registration page.
+Default: ``False``.
+
+This is an LMS setting, not a direct Authn MFE config value.
 
 ENABLE_ENTERPRISE_INTEGRATION
 ---------------------------------------------------
@@ -657,11 +660,6 @@ If you want the Organization table to be an authoritative information source in
 Studio, then disable this; however, if you want the table to just be a reflection of
 the orgs referenced in Studio content, then leave it enabled.
 
-PRIVACY_POLICY
----------------------------------------------------
-
-Set the content of the privacy policy page, in HTML format.
-
 RATELIMIT_ENABLE
 ---------------------------------------------------
 
@@ -791,10 +789,151 @@ SUPPORT_SITE_LINK
 
 Your URL for the Help button.
 
+ACTIVATION_EMAIL_SUPPORT_LINK
+---------------------------------------------------
+
+Support link shown by Authn MFE in activation-email related flows.
+Default: unset.
+
+AUTHN_PROGRESSIVE_PROFILING_SUPPORT_LINK
+---------------------------------------------------
+
+Support link shown by Authn MFE during progressive profiling flows.
+Default: unset.
+
+BANNER_IMAGE_EXTRA_SMALL
+---------------------------------------------------
+
+Authn MFE banner image URL for extra-small layouts.
+Default: unset.
+
+BANNER_IMAGE_LARGE
+---------------------------------------------------
+
+Authn MFE banner image URL for large layouts.
+Default: unset.
+
+BANNER_IMAGE_MEDIUM
+---------------------------------------------------
+
+Authn MFE banner image URL for medium layouts.
+Default: unset.
+
+BANNER_IMAGE_SMALL
+---------------------------------------------------
+
+Authn MFE banner image URL for small layouts.
+Default: unset.
+
+DISABLE_ENTERPRISE_LOGIN
+---------------------------------------------------
+
+Hide or disable enterprise login options in Authn MFE.
+Default: unset.
+
+ENABLE_AUTO_GENERATED_USERNAME
+---------------------------------------------------
+
+Allow LMS to auto-generate usernames during registration.
+Default: ``False``.
+
+This is an LMS feature toggle, not a direct Authn MFE config value.
+
+ENABLE_IMAGE_LAYOUT
+---------------------------------------------------
+
+Enable the image-based Authn MFE layout.
+Default: unset.
+
+ENABLE_POST_REGISTRATION_RECOMMENDATIONS
+---------------------------------------------------
+
+Enable post-registration recommendations in Authn MFE.
+Default: unset.
+
+ENABLE_PROGRESSIVE_PROFILING_ON_AUTHN
+---------------------------------------------------
+
+Enable progressive profiling flows in Authn MFE.
+Default: unset.
+
+GENERAL_RECOMMENDATIONS
+---------------------------------------------------
+
+JSON string with default recommendations consumed by Authn MFE.
+Default: unset.
+
+INFO_EMAIL
+---------------------------------------------------
+
+Informational contact email shown by Authn MFE.
+Default: unset.
+
+LOGIN_ISSUE_SUPPORT_LINK
+---------------------------------------------------
+
+Support link shown by Authn MFE on login issue flows.
+Default: unset.
+
+MARKETING_EMAILS_OPT_IN
+---------------------------------------------------
+
+Authn MFE value used to control marketing email opt-in UI behaviour.
+Default: unset.
+
+This is exposed as direct Authn config. It is not a documented LMS feature toggle.
+
+PASSWORD_RESET_SUPPORT_LINK
+---------------------------------------------------
+
+Support link shown by Authn MFE on password reset flows.
+Default: unset.
+
+POST_REGISTRATION_REDIRECT_URL
+---------------------------------------------------
+
+Redirect URL used by Authn MFE after registration completes.
+Default: unset.
+
+PRIVACY_POLICY
+---------------------------------------------------
+
+URL for the privacy policy page used by Authn MFE.
+Default: unset.
+
+SEARCH_CATALOG_URL
+---------------------------------------------------
+
+Catalog search URL used by Authn MFE.
+Default: unset.
+
+SHOW_CONFIGURABLE_EDX_FIELDS
+---------------------------------------------------
+
+Authn MFE value used to show configurable edX-specific registration fields.
+Default: unset.
+
+This is exposed as direct Authn config. It is not a documented LMS feature toggle.
+
+SHOW_REGISTRATION_LINKS
+---------------------------------------------------
+
+Show registration links in LMS/Authn flows.
+Default: ``True``.
+
+This is an LMS setting, not a direct Authn MFE config value.
+
 TOS_AND_HONOR_CODE
 ---------------------------------------------------
 
-Set the content of the TOS and Honor page, in HTML format.
+URL for the terms of service and honor code page used by Authn MFE.
+Default: unset.
+
+TOS_LINK
+---------------------------------------------------
+
+URL for the terms of service page used by Authn MFE.
+Default: unset.
 
 TWITTER_BRAND
 ---------------------------------------------------
