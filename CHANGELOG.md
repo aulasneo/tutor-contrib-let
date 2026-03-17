@@ -1,6 +1,6 @@
 # Change log
 
-## Unreleased
+## Version 20.0.0 (2026-03-17)
 - chore: Upgrade requirements and package versioning for Tutor 20 / Open edX Teak.
 - fix: Correct LET CLI handling for falsey values, emit YAML safely, restore ``LOGISTRATION_PER_EMAIL_RATELIMIT_RATE``, and align the default password minimum length to ``8``.
 - feat: Add and document Authn-related LET settings with defaults and ownership notes:
