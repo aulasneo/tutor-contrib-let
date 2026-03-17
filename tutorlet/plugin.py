@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import typing as t
 from glob import glob
 
 import click
@@ -162,12 +163,6 @@ config = {
         ],
 
         #
-        # openedx-dockerfile-post-git-checkout
-        #
-        "PATCH_EDX_PLATFORM": True,
-
-
-        #
         # openedx-lms-common-settings
         #
         "ENABLE_COURSE_DISCOVERY": True,
@@ -183,7 +178,7 @@ config = {
             },
             {
                 'NAME': 'common.djangoapps.util.password_policy_validators.MinimumLengthValidator',
-                'OPTIONS': {'min_length': 2}
+                'OPTIONS': {'min_length': 8}
             },
             {
                 'NAME': 'common.djangoapps.util.password_policy_validators.MaximumLengthValidator',
@@ -266,7 +261,21 @@ for path in glob(str(importlib_resources.files("tutorlet") / "patches" / "*")):
 #######################################
 
 from tutor.commands.config import save, ConfigKeyValParamType
-import typing as t
+
+
+def _normalize_yaml_value(value: t.Any) -> t.Any:
+    """
+    Convert Python-specific container types into plain YAML-safe structures.
+    """
+    if isinstance(value, tuple):
+        return [_normalize_yaml_value(item) for item in value]
+    if isinstance(value, list):
+        return [_normalize_yaml_value(item) for item in value]
+    if isinstance(value, dict):
+        return {
+            key: _normalize_yaml_value(item) for key, item in value.items()
+        }
+    return value
 
 @click.command()
 @click.argument(
@@ -306,16 +315,17 @@ def _list(output: str, all: bool, width: int) -> None:
         for key in sorted(config['defaults'].keys()):
             let_key = "LET_" + key
             default = defaults[let_key]
-            type_name = str(type(default))[8:-2]
-            value = configuration.get(let_key)
+            type_name = type(default).__name__
+            is_configured = let_key in configuration
+            value = configuration.get(let_key) if is_configured else default
 
-            if all or value:
+            if all or is_configured:
                 # truncate long strings for table view
                 if output == 'table':
                     key = key[:width]
-                    value = str(value)[:width] if value else ''
+                    value = str(value)[:width]
                     default = str(default)[:width]
-                data.append((key, type_name, default, value))
+                data.append((key, type_name, default, value, is_configured))
 
         if output == 'table':
             headers = ["Key", "Type", "Default", "Value"]
@@ -323,15 +333,15 @@ def _list(output: str, all: bool, width: int) -> None:
 
         elif output == 'list':
             for row in data:
-                value = row[3] if row[3] else row[2]
+                value = row[3]
                 if isinstance(value, str):
                     value = f'"{value}"'
                 print(f"LET {row[0]} = {value}")
 
         elif output == 'yaml':
-            print(yaml.dump({
-                "LET_"+row[0]: row[3] if row[3] else row[2] for row in data
-            }, default_flow_style=False, line_break=None))
+            print(yaml.safe_dump({
+                "LET_" + row[0]: _normalize_yaml_value(row[3]) for row in data
+            }, default_flow_style=False, sort_keys=True))
 
         else:
             fmt.echo_error(f"Unsupported output format '{output}'.")

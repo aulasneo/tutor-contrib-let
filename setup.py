@@ -43,12 +43,12 @@ setup(
     include_package_data=True,
     python_requires=">=3.11",
     install_requires=[
-        "tutor>=19.0.0,<20.0.0",
+        "tutor>=20.0.0,<21.0.0",
         "tabulate>=0.9.0,<1.0.0",
     ],
     extras_require={
         "dev": [
-            "tutor[dev]>=19.0.0,<20.0.0",
+            "tutor[dev]>=20.0.0,<21.0.0",
         ]
     },
     entry_points={
@@ -62,9 +62,6 @@ setup(
         "License :: OSI Approved :: GNU Affero General Public License v3",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
-        "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
     ],

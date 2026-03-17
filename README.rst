@@ -50,7 +50,7 @@ and current value, type ``tutor list``.
 Installation
 ************
 
-To install LET, run:
+To install LET with Tutor 20 (Open edX Teak), run:
 
 .. code-block::
 
@@ -656,11 +656,6 @@ result in a validation error.
 If you want the Organization table to be an authoritative information source in
 Studio, then disable this; however, if you want the table to just be a reflection of
 the orgs referenced in Studio content, then leave it enabled.
-
-PATCH_EDX_PLATFORM
----------------------------------------------------
-
-Set to True to apply the current version latest patches to edx-platform.
 
 PRIVACY_POLICY
 ---------------------------------------------------
