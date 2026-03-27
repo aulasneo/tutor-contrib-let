@@ -12,18 +12,16 @@ from tabulate import tabulate
 from tutor import hooks, fmt
 from tutor import config as tutor_config
 
-
 ########################################
 # CONFIGURATION
 ########################################
 
 config = {
-    'defaults': {
+    "defaults": {
         #
         # caddyfile patch
         #
-        "CADDYFILE_PATCH": '',
-
+        "CADDYFILE_PATCH": "",
         #
         # common-env-features
         #
@@ -54,12 +52,10 @@ config = {
         "ENABLE_MAX_FAILED_LOGIN_ATTEMPTS": True,
         "COURSES_INVITE_ONLY": False,
         "ENABLE_COOKIE_CONSENT": False,
-
         #
         # discovery-common-settings
         #
         "ELASTIC_SEARCH_INDEX_PREFIX": "",
-
         #
         # mfe-dockerfile-pre-npm-build-authn
         #
@@ -86,13 +82,11 @@ config = {
         "BANNER_IMAGE_EXTRA_SMALL": None,
         "GENERAL_RECOMMENDATIONS": None,
         "INFO_EMAIL": None,
-
         #
         # openedx-auth
         #
         "SOCIAL_AUTH_SAML_SP_PRIVATE_KEY": "",
         "SOCIAL_AUTH_SAML_SP_PUBLIC_CERT": "",
-
         #
         # openedx-cms-common-settings
         #
@@ -101,7 +95,6 @@ config = {
         "VIDEO_UPLOAD_PIPELINE_VEM_S3_BUCKET": "",
         "VIDEO_IMAGE_UPLOAD_ENABLED": True,
         "ORGANIZATIONS_AUTOCREATE": True,
-
         #
         # openedx-common-settings
         #
@@ -125,64 +118,55 @@ config = {
             "min_price": 0,
             "sku": None,
             "suggested_prices": "",
-            'android_sku': None,
-            'ios_sku': None,
+            "android_sku": None,
+            "ios_sku": None,
         },  # Default is audit mode
         "MKTG_URL_LINK_MAP": {},
         "MKTG_URL_OVERRIDES": {},
         "GOOGLE_ANALYTICS_4_ID": None,
-        "SUPPORT_SITE_LINK": '',
-        "SECURITY_PAGE_URL": '#',
+        "SUPPORT_SITE_LINK": "",
+        "SECURITY_PAGE_URL": "#",
         "ENTERPRISE_MARKETING_FOOTER_QUERY_PARAMS": {},
         # "SOCIAL_SHARING_SETTINGS"
-        'CUSTOM_COURSE_URLS': True,
-        'DASHBOARD_FACEBOOK': True,
+        "CUSTOM_COURSE_URLS": True,
+        "DASHBOARD_FACEBOOK": True,
         "FACEBOOK_BRAND": "",
         "TWITTER_BRAND": "",
-        'DASHBOARD_TWITTER': False,
-        'DASHBOARD_TWITTER_TEXT': "",
-        'CERTIFICATE_FACEBOOK': True,
-        'CERTIFICATE_FACEBOOK_TEXT': "",
-        'CERTIFICATE_TWITTER': True,
-        'CERTIFICATE_TWITTER_TEXT': "",
-        'CERTIFICATE_LINKEDIN_HONOR_CERT_NAME': '{platform_name} Honor Code Credential for {course_name}',
-        'CERTIFICATE_LINKEDIN_VERIFIED_CERT_NAME': '{platform_name} Verified Credential for {course_name}',
-        'CERTIFICATE_LINKEDIN_PROFESSIONAL_CERT_NAME': '{platform_name} Professional Credential for {course_name}',
-        'CERTIFICATE_LINKEDIN_NO_ID_CERT_NAME': '{platform_name} Professional Credential for {course_name}',
-        "USERNAME_REGEX_PARTIAL": r'[\w .@_+-]+',
-
+        "DASHBOARD_TWITTER": False,
+        "DASHBOARD_TWITTER_TEXT": "",
+        "CERTIFICATE_FACEBOOK": True,
+        "CERTIFICATE_FACEBOOK_TEXT": "",
+        "CERTIFICATE_TWITTER": True,
+        "CERTIFICATE_TWITTER_TEXT": "",
+        "CERTIFICATE_LINKEDIN_HONOR_CERT_NAME": "{platform_name} Honor Code Credential for {course_name}",
+        "CERTIFICATE_LINKEDIN_VERIFIED_CERT_NAME": "{platform_name} Verified Credential for {course_name}",
+        "CERTIFICATE_LINKEDIN_PROFESSIONAL_CERT_NAME": "{platform_name} Professional Credential for {course_name}",
+        "CERTIFICATE_LINKEDIN_NO_ID_CERT_NAME": "{platform_name} Professional Credential for {course_name}",
+        "USERNAME_REGEX_PARTIAL": r"[\w .@_+-]+",
         "REGISTRATION_EXTRA_FIELDS": {},
         "ENABLE_DYNAMIC_REGISTRATION_FIELDS": False,
         "MAX_FAILED_LOGIN_ATTEMPTS_ALLOWED": 6,
         "MAX_FAILED_LOGIN_ATTEMPTS_LOCKOUT_PERIOD_SECS": 1800,
         "RATELIMIT_USE_CACHE": "general",
         "RATELIMIT_ENABLE": True,
-        "RATELIMIT_RATE": '120/m',
-
+        "RATELIMIT_RATE": "120/m",
         # Check defaults at https://github.com/openedx/edx-platform/blob/1c14c3a5184b27b344b782dd6ac88f3e64cf2535/lms/envs/common.py#L4905C1-L4912C1
-        "LOGISTRATION_RATELIMIT_RATE": '100/5m',
-        "LOGISTRATION_PER_EMAIL_RATELIMIT_RATE": '30/5m',
-        "LOGISTRATION_API_RATELIMIT": '20/m',
-        "LOGIN_AND_REGISTER_FORM_RATELIMIT": '100/5m',
-        "RESET_PASSWORD_TOKEN_VALIDATE_API_RATELIMIT": '30/7d',
-        "RESET_PASSWORD_API_RATELIMIT": '30/7d',
-        "OPTIONAL_FIELD_API_RATELIMIT": '10/h',
-
+        "LOGISTRATION_RATELIMIT_RATE": "100/5m",
+        "LOGISTRATION_PER_EMAIL_RATELIMIT_RATE": "30/5m",
+        "LOGISTRATION_API_RATELIMIT": "20/m",
+        "LOGIN_AND_REGISTER_FORM_RATELIMIT": "100/5m",
+        "RESET_PASSWORD_TOKEN_VALIDATE_API_RATELIMIT": "30/7d",
+        "RESET_PASSWORD_API_RATELIMIT": "30/7d",
+        "OPTIONAL_FIELD_API_RATELIMIT": "10/h",
         # Check defaults at https://github.com/openedx/edx-platform/blob/1c14c3a5184b27b344b782dd6ac88f3e64cf2535/lms/envs/common.py#L3444-L3459
-        "REGISTRATION_VALIDATION_RATELIMIT": '30/7d',
-        "REGISTRATION_RATELIMIT": '60/7d',
-
+        "REGISTRATION_VALIDATION_RATELIMIT": "30/7d",
+        "REGISTRATION_RATELIMIT": "60/7d",
         # Check default at https://github.com/openedx/edx-platform/blob/1c14c3a5184b27b344b782dd6ac88f3e64cf2535/lms/envs/common.py#L3436-L3441
-        'DEFAULT_THROTTLE_RATES': {},
-
+        "DEFAULT_THROTTLE_RATES": {},
         # Default at https://github.com/overhangio/tutor/blob/6a87af76b9244ce9a954f424aa17cbaa13c91e3a/tutor/templates/apps/openedx/settings/partials/common_all.py#L91
         "SITE_ID": 2,
-
         # Empty by default, here we let other_course_settings show in the API.
-        "COURSE_BLOCKS_API_EXTRA_FIELDS": [
-            ('course', 'other_course_settings')
-        ],
-
+        "COURSE_BLOCKS_API_EXTRA_FIELDS": [("course", "other_course_settings")],
         #
         # openedx-lms-common-settings
         #
@@ -191,22 +175,20 @@ config = {
         "SOCIAL_AUTH_OAUTH_SECRETS": {},
         "COURSE_DISCOVERY_FILTERS": ["org", "language", "modes"],
         "ENABLE_SAML": True,
-
         # openedx-lms-production-settings
         "AUTH_PASSWORD_VALIDATORS": [
             {
-                'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'
+                "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
             },
             {
-                'NAME': 'common.djangoapps.util.password_policy_validators.MinimumLengthValidator',
-                'OPTIONS': {'min_length': 8}
+                "NAME": "common.djangoapps.util.password_policy_validators.MinimumLengthValidator",
+                "OPTIONS": {"min_length": 8},
             },
             {
-                'NAME': 'common.djangoapps.util.password_policy_validators.MaximumLengthValidator',
-                'OPTIONS': {'max_length': 75}
-            }
+                "NAME": "common.djangoapps.util.password_policy_validators.MaximumLengthValidator",
+                "OPTIONS": {"max_length": 75},
+            },
         ],
-
         # others waffle flags, switches and settings created at init time
         "ENABLE_CERTIFICATES_AUTOGENERATION": True,
         "ENABLE_ANONYMOUS_COURSEWARE_ACCESS": True,
@@ -215,14 +197,11 @@ config = {
         "MFE_PROGRESS_MILESTONES_STREAK_CELEBRATION": True,
         "MFE_COURSEWARE_SEARCH": True,
         "ENABLE_NAVIGATION_SIDEBAR": True,
-
     }
 }
 
 hooks.Filters.CONFIG_DEFAULTS.add_items(
-    [
-        (f"LET_{key}", value) for key, value in config['defaults'].items()
-    ]
+    [(f"LET_{key}", value) for key, value in config["defaults"].items()]
 )
 
 ########################################
@@ -230,7 +209,7 @@ hooks.Filters.CONFIG_DEFAULTS.add_items(
 ########################################
 
 MY_INIT_TASKS: list[tuple[str, tuple[str, ...]]] = [
-    ('lms', ("let", "tasks", "lms", "init"))
+    ("lms", ("let", "tasks", "lms", "init"))
 ]
 
 for service, template_path in MY_INIT_TASKS:
@@ -293,47 +272,55 @@ def _normalize_yaml_value(value: t.Any) -> t.Any:
     if isinstance(value, list):
         return [_normalize_yaml_value(item) for item in value]
     if isinstance(value, dict):
-        return {
-            key: _normalize_yaml_value(item) for key, item in value.items()
-        }
+        return {key: _normalize_yaml_value(item) for key, item in value.items()}
     return value
+
 
 @click.command()
 @click.argument(
-    'setting',
+    "setting",
     type=ConfigKeyValParamType(),
     metavar="KEY=VAL",
 )
 @click.pass_context
-def let(context: click.Context, setting: list[tuple[str, t.Any]],) -> None:
+def let(context: click.Context, setting: tuple[str, t.Any]) -> None:
     """
     Add a setting to the configuration file.
     """
-    if setting[0] not in config['defaults']:
+    if setting[0] not in config["defaults"]:
         fmt.echo_error(f"{setting[0]} is not a valid setting.")
         return
 
     context.invoke(save, set_vars=[(f"LET_{setting[0]}", setting[1])])
 
+
 hooks.Filters.CLI_COMMANDS.add_item(let)
 
-@click.option('-o', '--output', default='list', help='Output format (list or table)')
-@click.option('-a', '--all', is_flag=True, default=False,
-              help='Show all values. Otherwise it will show only the non-default values.')
-@click.option('-w', '--width', default=50, help='Maximum column width for table output.')
-@click.command(name='list', help='Show all values.')
+
+@click.option("-o", "--output", default="list", help="Output format (list or table)")
+@click.option(
+    "-a",
+    "--all",
+    is_flag=True,
+    default=False,
+    help="Show all values. Otherwise it will show only the non-default values.",
+)
+@click.option(
+    "-w", "--width", default=50, help="Maximum column width for table output."
+)
+@click.command(name="list", help="Show all values.")
 def _list(output: str, all: bool, width: int) -> None:
     """
     List all available settings, their type, default and current value.
     """
     current_context = click.get_current_context()
-    root = current_context.parent.params.get('root')
+    root = current_context.parent.params.get("root") if current_context.parent else None
     if root:
         configuration = tutor_config.load_minimal(root)
         defaults = tutor_config.load_defaults()
 
         data = []
-        for key in sorted(config['defaults'].keys()):
+        for key in sorted(config["defaults"].keys()):
             let_key = "LET_" + key
             default = defaults[let_key]
             type_name = type(default).__name__
@@ -342,32 +329,37 @@ def _list(output: str, all: bool, width: int) -> None:
 
             if all or is_configured:
                 # truncate long strings for table view
-                if output == 'table':
+                if output == "table":
                     key = key[:width]
                     value = str(value)[:width]
                     default = str(default)[:width]
                 data.append((key, type_name, default, value, is_configured))
 
-        if output == 'table':
+        if output == "table":
             headers = ["Key", "Type", "Default", "Value"]
             print(tabulate(data, headers=headers, tablefmt="fancy_grid"))
 
-        elif output == 'list':
+        elif output == "list":
             for row in data:
                 value = row[3]
                 if isinstance(value, str):
                     value = f'"{value}"'
                 print(f"LET {row[0]} = {value}")
 
-        elif output == 'yaml':
-            print(yaml.safe_dump({
-                "LET_" + row[0]: _normalize_yaml_value(row[3]) for row in data
-            }, default_flow_style=False, sort_keys=True))
+        elif output == "yaml":
+            print(
+                yaml.safe_dump(
+                    {"LET_" + row[0]: _normalize_yaml_value(row[3]) for row in data},
+                    default_flow_style=False,
+                    sort_keys=True,
+                )
+            )
 
         else:
             fmt.echo_error(f"Unsupported output format '{output}'.")
 
     else:
         fmt.echo_error("Tutor root not specified.")
+
 
 hooks.Filters.CLI_COMMANDS.add_item(_list)

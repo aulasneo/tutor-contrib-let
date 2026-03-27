@@ -5,3 +5,5 @@ twine>=6.2.0
 build
 pkginfo>=1.12.0
 pip-tools
+types-PyYAML
+types-tabulate
