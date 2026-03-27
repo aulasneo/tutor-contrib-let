@@ -46,11 +46,6 @@ setup(
         "tutor>=20.0.0,<21.0.0",
         "tabulate>=0.9.0,<1.0.0",
     ],
-    extras_require={
-        "dev": [
-            "tutor[dev]>=20.0.0,<21.0.0",
-        ]
-    },
     entry_points={
         "tutor.plugin.v1": [
             "let = tutorlet.plugin"

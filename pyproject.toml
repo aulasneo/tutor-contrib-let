@@ -1,0 +1,46 @@
+[project]
+name = "tutor-contrib-let"
+description = "Tutor plugin to simplify the configuration of Open edX settings."
+authors = [
+  { name = "Andres Gonzalez", email = "andres@aulasneo.com" },
+]
+license = { text = "AGPLv3" }
+license-files = []
+readme = { file = "README.rst", content-type = "text/x-rst" }
+requires-python = ">=3.11"
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: GNU Affero General Public License v3",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+  "tutor>=20.0.0,<21.0.0",
+  "tabulate>=0.9.0,<1.0.0",
+]
+dynamic = ["version"]
+
+[project.urls]
+Code = "https://github.com/aulasneo/tutor-contrib-let"
+Issues = "https://github.com/aulasneo/tutor-contrib-let/issues"
+
+[project.entry-points."tutor.plugin.v1"]
+let = "tutorlet.plugin"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "tutorlet/__about__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["tutorlet"]
+
+[tool.hatch.build.targets.sdist]
+strict-naming = false
+include = ["/tutorlet", "/README.rst", "/LICENSE.txt", "/CHANGELOG.md"]
+exclude = ["tests*"]

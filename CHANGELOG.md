@@ -1,5 +1,12 @@
 # Change log
 
+## Unreleased
+- feat: add local development automation with a `Makefile` and pinned dev requirements
+- feat: add GitHub Actions test and release workflows aligned with the current plugin maintenance flow
+- ref: adopt `pyproject.toml`-based builds while keeping package metadata aligned
+- breaking: require Python 3.11 or newer
+- chore: ignore generated Tutor `config.yml` and `env/` artifacts from local test runs
+
 ## Version 20.0.0 (2026-03-17)
 - chore: Upgrade requirements and package versioning for Tutor 20 / Open edX Teak.
 - fix: Correct LET CLI handling for falsey values, emit YAML safely, restore ``LOGISTRATION_PER_EMAIL_RATELIMIT_RATE``, and align the default password minimum length to ``8``.
