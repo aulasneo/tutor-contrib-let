@@ -6,6 +6,7 @@
 - ref: adopt `pyproject.toml`-based builds while keeping package metadata aligned
 - breaking: require Python 3.11 or newer
 - chore: ignore generated Tutor `config.yml` and `env/` artifacts from local test runs
+- fix: pass `ENABLE_DYNAMIC_REGISTRATION_FIELDS="true"` to the authn MFE when the LMS setting is enabled
 
 ## Version 20.0.0 (2026-03-17)
 - chore: Upgrade requirements and package versioning for Tutor 20 / Open edX Teak.
