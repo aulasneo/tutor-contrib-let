@@ -29,7 +29,6 @@ config = {
         "CUSTOM_COURSES_EDX": True,
         "ALLOW_COURSE_STAFF_GRADE_DOWNLOADS": True,
         "CUSTOM_CERTIFICATE_TEMPLATES_ENABLED": True,
-        "ENABLE_ANNOUNCEMENTS": True,
         "ENABLE_AUTOMATED_SIGNUPS_EXTRA_FIELDS": True,
         "ENABLE_BULK_ENROLLMENT_VIEW": True,
         "ENABLE_BULK_USER_RETIREMENT": True,
@@ -94,6 +93,7 @@ config = {
         "VIDEO_UPLOAD_PIPELINE_ROOT_PATH": "videos",
         "VIDEO_UPLOAD_PIPELINE_VEM_S3_BUCKET": "",
         "VIDEO_IMAGE_UPLOAD_ENABLED": True,
+        "IN_CONTEXT_DISCUSSION_ENABLED_DEFAULT": None,
         "ORGANIZATIONS_AUTOCREATE": True,
         #
         # openedx-common-settings
@@ -108,6 +108,11 @@ config = {
         #  will still appear in search results.
         "SEARCH_SKIP_SHOW_IN_CATALOG_FILTERING": False,  # True by default
         "WIKI_ENABLED": False,
+        "LOGIN_REDIRECT_WHITELIST": None,
+        "LEARNING_MICROFRONTEND_URL": None,
+        "PARENTAL_CONSENT_AGE_LIMIT": None,
+        "REGISTRATION_EMAIL_PATTERNS_ALLOWED": None,
+        "SESSION_ACTIVITY_SAVE_DELAY_SECONDS": None,
         "COURSE_MODE_DEFAULTS": {
             "name": "Honor",
             "slug": "honor",
@@ -171,6 +176,8 @@ config = {
         # openedx-lms-common-settings
         #
         "ENABLE_COURSE_DISCOVERY": True,
+        "ENABLE_COURSEWARE_SEARCH_FOR_COURSE_STAFF": None,
+        "ENABLE_COURSEWARE_SEARCH_VERIFIED_REQUIRED": None,
         "AUTHENTICATION_BACKENDS": [],
         "SOCIAL_AUTH_OAUTH_SECRETS": {},
         "COURSE_DISCOVERY_FILTERS": ["org", "language", "modes"],

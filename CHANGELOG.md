@@ -1,5 +1,12 @@
 # Change log
 
+## Unreleased
+- chore: upgrade package compatibility and local development pins for Tutor 21 / Open edX Ulmo.
+- test: validate the plugin against Tutor 21 hook and CLI APIs used by LET.
+- fix: align Ulmo-migrated configuration with current Open edX setting locations instead of relying only on legacy ``FEATURES`` keys.
+- feat: add Ulmo-native settings for LMS/CMS behavior, explicitly listing ``LOGIN_REDIRECT_WHITELIST``, ``LEARNING_MICROFRONTEND_URL``, ``PARENTAL_CONSENT_AGE_LIMIT``, ``REGISTRATION_EMAIL_PATTERNS_ALLOWED``, ``SESSION_ACTIVITY_SAVE_DELAY_SECONDS``, ``ENABLE_COURSEWARE_SEARCH_FOR_COURSE_STAFF``, ``ENABLE_COURSEWARE_SEARCH_VERIFIED_REQUIRED``, and ``IN_CONTEXT_DISCUSSION_ENABLED_DEFAULT``.
+- ref: remove deprecated ``ENABLE_ANNOUNCEMENTS`` from the plugin surface for Ulmo.
+
 ## Version 20.0.1 (2026-04-01)
 - feat: add local development automation with a `Makefile` and pinned dev requirements
 - feat: add GitHub Actions test and release workflows aligned with the current plugin maintenance flow
