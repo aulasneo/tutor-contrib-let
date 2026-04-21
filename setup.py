@@ -43,7 +43,7 @@ setup(
     include_package_data=True,
     python_requires=">=3.11",
     install_requires=[
-        "tutor>=20.0.0,<21.0.0",
+        "tutor>=21.0.0,<22.0.0",
         "tabulate>=0.9.0,<1.0.0",
     ],
     entry_points={

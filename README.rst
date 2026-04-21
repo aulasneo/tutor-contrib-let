@@ -50,7 +50,7 @@ and current value, type ``tutor list``.
 Installation
 ************
 
-To install LET with Tutor 20 (Open edX Teak), run:
+To install LET with Tutor 21 (Open edX Ulmo), run:
 
 .. code-block::
 
@@ -328,14 +328,6 @@ ELASTIC_SEARCH_INDEX_PREFIX
 Set a prefix for all ElasticSearch indexes. It's useful for sharing a single
 ES engine between multiple installations.
 
-ENABLE_ANNOUNCEMENTS
----------------------------------------------------
-
-This feature can be enabled to show system wide announcements
-on the sidebar of the learner dashboard. Announcements can be created by Global Staff
-users on maintenance dashboard of studio. Maintenance dashboard can accessed at
-``https://{studio.domain}/maintenance``
-
 ENABLE_ANONYMOUS_COURSEWARE_ACCESS
 ---------------------------------------------------
 
@@ -397,6 +389,21 @@ ENABLE_COURSE_DISCOVERY
 Add a course search widget to the LMS for searching courses. When this is enabled, the
 latest courses are no longer displayed on the LMS landing page. Also, an "Explore Courses" item is added to the
 navbar.
+
+In Ulmo this is rendered both as a regular LMS setting and as the legacy feature flag
+for compatibility with older integrations.
+
+ENABLE_COURSEWARE_SEARCH_FOR_COURSE_STAFF
+---------------------------------------------------
+
+Allow course staff to use courseware search where the platform supports staff-only search.
+Default: unset.
+
+ENABLE_COURSEWARE_SEARCH_VERIFIED_REQUIRED
+---------------------------------------------------
+
+Require verified enrollment before learners can use courseware search.
+Default: unset.
 
 ENABLE_COURSE_EXIT_PAGE
 ---------------------------------------------------
@@ -551,6 +558,24 @@ license information to the courseware.
 When enabled you can set the license type (all rights reserved or creative commons)
 in the course schedule & details page.
 
+LEARNING_MICROFRONTEND_URL
+---------------------------------------------------
+
+Override the Learning MFE URL exposed by Open edX.
+Default: unset.
+
+LOGIN_REDIRECT_WHITELIST
+---------------------------------------------------
+
+List of allowed redirect hosts or domains for login-related redirects.
+Use a YAML list, for example:
+
+.. code-block::
+
+    tutor let "LOGIN_REDIRECT_WHITELIST=['cms.example.com', 'app.example.com']"
+
+Default: unset.
+
 LOGIN_AND_REGISTER_FORM_RATELIMIT
 ---------------------------------------------------
 
@@ -660,6 +685,12 @@ If you want the Organization table to be an authoritative information source in
 Studio, then disable this; however, if you want the table to just be a reflection of
 the orgs referenced in Studio content, then leave it enabled.
 
+PARENTAL_CONSENT_AGE_LIMIT
+---------------------------------------------------
+
+Minimum user age that does not require parental consent during registration flows.
+Default: unset.
+
 RATELIMIT_ENABLE
 ---------------------------------------------------
 
@@ -709,6 +740,18 @@ You can override individual values. The default values in Open edX are:
         'country': 'hidden',
     }
 
+REGISTRATION_EMAIL_PATTERNS_ALLOWED
+---------------------------------------------------
+
+Allowlist of email address patterns accepted during registration.
+Use a YAML list of regex patterns. Example:
+
+.. code-block::
+
+    tutor let "REGISTRATION_EMAIL_PATTERNS_ALLOWED=['.*@example.com$', '.*@school.edu$']"
+
+Default: unset.
+
 REGISTRATION_RATELIMIT
 ---
 
@@ -746,6 +789,12 @@ SEARCH_SKIP_SHOW_IN_CATALOG_FILTERING
 
 If enabled, courses with a catalog_visibility set to "none" will still
 appear in search results.
+
+SESSION_ACTIVITY_SAVE_DELAY_SECONDS
+---------------------------------------------------
+
+Delay, in seconds, before session activity is persisted.
+Default: unset.
 
 SECURITY_PAGE_URL
 ---------------------------------------------------
@@ -922,6 +971,12 @@ Show registration links in LMS/Authn flows.
 Default: ``True``.
 
 This is an LMS setting, not a direct Authn MFE config value.
+
+IN_CONTEXT_DISCUSSION_ENABLED_DEFAULT
+---------------------------------------------------
+
+Default Studio setting for enabling in-context discussions in newly created content.
+Default: unset.
 
 TOS_AND_HONOR_CODE
 ---------------------------------------------------
