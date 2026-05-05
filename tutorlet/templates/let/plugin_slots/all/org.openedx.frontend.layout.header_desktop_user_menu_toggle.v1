@@ -1,0 +1,5 @@
+{% if LET_ENABLE_USERNAME_AUTOGENERATION %}{
+  op: PLUGIN_OPERATIONS.Modify,
+  widgetId: 'default_contents',
+  fn: modifyDesktopUserMenuToggle,
+}{% endif %}
