@@ -1,6 +1,6 @@
 # Change log
 
-## Unreleased
+## Version 21.0.1 (2026-05-05)
 - feat: add support for auto-generated usernames in MFE configuration
 
 ## Version 21.0.0 (2026-04-21)
