@@ -1,5 +1,8 @@
 # Change log
 
+## Unreleased
+- feat: add support for auto-generated usernames in MFE configuration
+
 ## Version 21.0.0 (2026-04-21)
 - chore: upgrade package compatibility and local development pins for Tutor 21 / Open edX Ulmo.
 - test: validate the plugin against Tutor 21 hook and CLI APIs used by LET.

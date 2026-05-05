@@ -65,4 +65,7 @@ MFE_CONFIG.update({
 {% if LET_INFO_EMAIL is not none %}
     "INFO_EMAIL": "{{ LET_INFO_EMAIL }}",
 {% endif %}
+{% if ENABLE_AUTO_GENERATED_USERNAME is not none %}
+    "ENABLE_AUTO_GENERATED_USERNAME": "{{ LET_ENABLE_AUTO_GENERATED_USERNAME }}",
+{% endif %}
 })
