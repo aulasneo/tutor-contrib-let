@@ -1,6 +1,6 @@
 # Change log
 
-## Unreleased
+## Version 21.1.0 (2026-05-05)
 - feat: Show the user full name instead of the username in the user menu
 
 ## Version 21.0.1 (2026-05-05)
