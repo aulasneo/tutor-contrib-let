@@ -9,8 +9,9 @@ import importlib_resources
 import yaml
 
 from tabulate import tabulate
-from tutor import hooks, fmt
+from tutor import env, hooks, fmt
 from tutor import config as tutor_config
+from tutormfe.hooks import PLUGIN_SLOTS
 
 ########################################
 # CONFIGURATION
@@ -261,6 +262,36 @@ hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
 for path in glob(str(importlib_resources.files("tutorlet") / "patches" / "*")):
     with open(path, encoding="utf-8") as patch_file:
         hooks.Filters.ENV_PATCHES.add_item((os.path.basename(path), patch_file.read()))
+
+
+@hooks.Actions.CONFIG_LOADED.add()
+def _load_plugin_slots(config: t.Any) -> None:
+    # Render plugin slot templates with the final Tutor config before registering them.
+    slot_context = hooks.Contexts.app("let").name
+    PLUGIN_SLOTS.clear(context=slot_context)
+
+    with hooks.Contexts.app("let").enter():
+        for path in glob(
+            str(
+                importlib_resources.files("tutorlet")
+                / "templates"
+                / "let"
+                / "plugin_slots"
+                / "*"
+                / "*"
+            )
+        ):
+            mfe_name = os.path.basename(os.path.dirname(path))
+            slot_name = os.path.basename(path)
+            content = env.render_file(
+                config,
+                "let",
+                "plugin_slots",
+                mfe_name,
+                slot_name,
+            )
+            if content.strip():
+                PLUGIN_SLOTS.add_item((mfe_name, slot_name, content))
 
 
 #######################################
