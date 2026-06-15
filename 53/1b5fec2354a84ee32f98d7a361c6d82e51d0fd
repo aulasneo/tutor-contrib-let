@@ -1,0 +1,19 @@
+tutorlet/patches/mfe-env-config-runtime-definitions
+  s_76b0c5f518c5fe::t_bda3ea8d3d166e 3,6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "531b5fec2354a84ee32f98d7a361c6d82e51d0fd",
+  "prompts": {},
+  "sessions": {
+    "s_76b0c5f518c5fe": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b221130f-c222-46ca-a214-bd2b691f8e9f",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Andrés González <andres@aulasneo.com>"
+    }
+  }
+}
