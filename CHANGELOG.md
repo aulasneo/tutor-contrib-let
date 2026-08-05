@@ -1,6 +1,6 @@
 # Change log
 
-## Unreleased
+## Version 21.1.1 (2026-08-05)
 - fix: Rename importation of getAuthenticatedUser
 - fix: Do not include ENABLE_AUTO_GENERATED_USERNAME in MFE_CONFIG if false.
 
