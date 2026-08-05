@@ -2,6 +2,7 @@
 
 ## Unreleased
 - fix: Rename importation of getAuthenticatedUser
+- fix: Do not include ENABLE_AUTO_GENERATED_USERNAME in MFE_CONFIG if false.
 
 ## Version 21.1.0 (2026-05-05)
 - feat: Show the user full name instead of the username in the user menu
