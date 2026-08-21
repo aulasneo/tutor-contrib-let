@@ -1,0 +1,18 @@
+tutorlet/patches/mfe-lms-common-settings
+  h_67430f944e00e2 71-73
+CHANGELOG.md
+  h_67430f944e00e2 3-5
+requirements.txt
+  h_67430f944e00e2 1-113
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.23",
+  "base_commit_sha": "ba4b8940a884a9578bb0db494d00ad2da869a0c4",
+  "prompts": {},
+  "humans": {
+    "h_67430f944e00e2": {
+      "author": "Andrés González <andres@aulasneo.com>"
+    }
+  }
+}
