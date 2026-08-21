@@ -1,6 +1,6 @@
 # Change log
 
-## Unreleased
+## Version 21.1.2 (2026-08-21)
 - fix: disabling ALLOW_PUBLIC_ACCOUNT_CREATION now does not render the registration page
 
 ## Version 21.1.1 (2026-08-05)
