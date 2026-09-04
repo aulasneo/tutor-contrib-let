@@ -1,5 +1,8 @@
 # Change log
 
+## Unreleased
+- feat: Upgrade to Verawood
+
 ## Version 21.1.2 (2026-08-21)
 - fix: disabling ALLOW_PUBLIC_ACCOUNT_CREATION now does not render the registration page
 

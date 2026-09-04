@@ -10,12 +10,8 @@ BLACK_OPTS = --exclude templates ${SRC_DIRS}
 clean: ## Remove build artifacts
 	rm -rf build dist *.egg-info
 
-upgrade: ## Compile requirements from requirements.in
-	pip-compile
-
-requirements: ## Install requirements from requirements.txt
-	$(PYTHON) -m pip install --upgrade -r requirements.txt
-	$(PYTHON) -m pip install -e .
+install: ## Install the project and development dependencies
+	$(PYTHON) -m pip install --upgrade --editable ".[dev]"
 
 build: clean ## Build the package
 	$(PYTHON) -m build
