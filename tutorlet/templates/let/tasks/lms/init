@@ -39,10 +39,3 @@
 {% else %}
 ./manage.py lms waffle_delete --flags courseware.mfe_courseware_search
 {% endif %}
-
-{% if LET_ENABLE_NAVIGATION_SIDEBAR %}
-(./manage.py lms waffle_flag --list | grep courseware.enable_navigation_sidebar) || ./manage.py lms waffle_flag --create --everyone courseware.enable_navigation_sidebar
-{% else %}
-./manage.py lms waffle_delete --flags courseware.enable_navigation_sidebar
-{% endif %}
-

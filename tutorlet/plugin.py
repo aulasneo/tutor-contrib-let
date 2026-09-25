@@ -204,7 +204,6 @@ config = {
         "MFE_PROGRESS_MILESTONES": True,
         "MFE_PROGRESS_MILESTONES_STREAK_CELEBRATION": True,
         "MFE_COURSEWARE_SEARCH": True,
-        "ENABLE_NAVIGATION_SIDEBAR": True,
     }
 }
 

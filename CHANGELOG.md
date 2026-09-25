@@ -1,7 +1,11 @@
 # Change log
 
 ## Unreleased
-- feat: Upgrade to Verawood
+- fix: Use a module-level auth import for the full-name user menu patch to support frontend-base MFE builds.
+- chore: Upgrade package compatibility to Tutor and tutor-mfe >=22.0.0,<23.0.0 / Open edX Verawood, with Python >=3.10.
+- ref: Remove legacy setup.py; package metadata and builds are managed by pyproject.toml and Hatchling.
+- breaking: Remove LET_ENABLE_NAVIGATION_SIDEBAR and its documentation. LET initialization no longer creates or deletes the courseware.enable_navigation_sidebar waffle flag.
+- fix: Declare mypy in the dev extra used by make install so type checks do not rely on transitive dependencies.
 
 ## Version 21.1.2 (2026-08-21)
 - fix: disabling ALLOW_PUBLIC_ACCOUNT_CREATION now does not render the registration page
