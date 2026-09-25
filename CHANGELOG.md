@@ -1,6 +1,6 @@
 # Change log
 
-## Unreleased
+## Version 22.0.0 (2026-09-25)
 - fix: Use a module-level auth import for the full-name user menu patch to support frontend-base MFE builds.
 - chore: Upgrade package compatibility to Tutor and tutor-mfe >=22.0.0,<23.0.0 / Open edX Verawood, with Python >=3.10.
 - ref: Remove legacy setup.py; package metadata and builds are managed by pyproject.toml and Hatchling.
