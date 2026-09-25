@@ -1,7 +1,9 @@
 # Change log
 
 ## Unreleased
+- fix: Use a module-level auth import for the full-name user menu patch to support frontend-base MFE builds.
 - feat: Upgrade to Verawood
+- feat: Deprecated ENABLE_NAVIGATION_SIDEBAR setting
 
 ## Version 21.1.2 (2026-08-21)
 - fix: disabling ALLOW_PUBLIC_ACCOUNT_CREATION now does not render the registration page

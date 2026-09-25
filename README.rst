@@ -448,15 +448,6 @@ ENABLE_MKTG_SITE
 Toggle to enable alternate urls for marketing links. When this is enabled, the MKTG_URLS setting should be defined. The use case of this feature
 toggle is uncertain.
 
-ENABLE_NAVIGATION_SIDEBAR
----------------------------------------------------
-
-Enable navigation sidebar on Learning MFE.
-
-This setting changes the ``courseware.enable_navigation_sidebar`` waffle flag.
-Run ``tutor <variant> do init --limit let`` to activate the change if you're not running
-a ``tutor launch``.
-
 ENABLE_ORA_TEAM_SUBMISSIONS
 ---------------------------------------------------
 

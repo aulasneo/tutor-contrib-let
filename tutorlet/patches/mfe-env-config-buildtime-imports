@@ -1,0 +1,3 @@
+{% if LET_ENABLE_AUTO_GENERATED_USERNAME %}
+import { getAuthenticatedUser as letGetAuthenticatedUser } from '@edx/frontend-platform/auth';
+{% endif %}
