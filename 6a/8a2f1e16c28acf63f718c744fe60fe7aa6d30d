@@ -1,0 +1,18 @@
+CHANGELOG.md
+  h_67430f944e00e2 3
+tutorlet/__about__.py
+  h_67430f944e00e2 1
+.bumpversion.cfg
+  h_67430f944e00e2 5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "6a8a2f1e16c28acf63f718c744fe60fe7aa6d30d",
+  "prompts": {},
+  "humans": {
+    "h_67430f944e00e2": {
+      "author": "Andrés González <andres@aulasneo.com>"
+    }
+  }
+}
