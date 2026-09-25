@@ -1,0 +1,22 @@
+CHANGELOG.md
+  s_d41882787c6b30::t_6a5c3ea24dfafe 5-6
+  s_d41882787c6b30::t_13fcae38d3e9c0 7-8
+pyproject.toml
+  s_d41882787c6b30::t_13fcae38d3e9c0 34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "b7fcc95dea20b1c1a9d666216ada4e970a8cccec",
+  "prompts": {},
+  "sessions": {
+    "s_d41882787c6b30": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0743e-5df3-7bc0-aff3-29afa31f9a8e",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Andrés González <andres@aulasneo.com>"
+    }
+  }
+}
