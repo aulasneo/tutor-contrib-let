@@ -1,0 +1,22 @@
+CHANGELOG.md
+  s_d41882787c6b30::t_38412b10c21d31 4
+  s_d41882787c6b30::t_84b3676ea98288 6
+tutorlet/patches/mfe-env-config-buildtime-imports
+  s_d41882787c6b30::t_38412b10c21d31 1-3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "1d0f58647f9e6a4361ca9c519dd48029f427534c",
+  "prompts": {},
+  "sessions": {
+    "s_d41882787c6b30": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0743e-5df3-7bc0-aff3-29afa31f9a8e",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Andrés González <andres@aulasneo.com>"
+    }
+  }
+}
