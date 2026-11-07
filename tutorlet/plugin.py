@@ -99,6 +99,7 @@ config = {
         #
         # openedx-common-settings
         #
+        "YOUTUBE_API_KEY": "",
         "MKTG_URLS": {},
         "DEFAULT_MOBILE_AVAILABLE": True,
         "ENABLE_COMPREHENSIVE_THEMING": True,

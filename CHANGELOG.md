@@ -1,5 +1,9 @@
 # Change log
 
+## Unreleased
+
+- Support YOUTUBE_API_KEY setting
+
 ## Version 22.0.0 (2026-09-25)
 - fix: Use a module-level auth import for the full-name user menu patch to support frontend-base MFE builds.
 - chore: Upgrade package compatibility to Tutor and tutor-mfe >=22.0.0,<23.0.0 / Open edX Verawood, with Python >=3.10.
