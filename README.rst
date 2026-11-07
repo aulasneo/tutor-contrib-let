@@ -1017,6 +1017,12 @@ WIKI_ENABLED
 This setting allows us to have a collaborative tool to contribute or
 modify content of course related materials.
 
+YOUTUBE_API_KEY
+---------------------------------------------------
+
+YouTube API key used by Open edX. Set it with ``tutor let YOUTUBE_API_KEY=<key>``.
+Default: Empty string.
+
 Contributing
 ************
 
