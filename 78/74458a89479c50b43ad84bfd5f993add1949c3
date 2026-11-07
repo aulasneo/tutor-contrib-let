@@ -1,0 +1,28 @@
+tutorlet/plugin.py
+  s_3933249a6cc081::t_f18e2b90447ce7 102
+README.rst
+  s_3933249a6cc081::t_f18e2b90447ce7 1020-1025
+tutorlet/patches/openedx-common-settings
+  s_3933249a6cc081::t_f18e2b90447ce7 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7874458a89479c50b43ad84bfd5f993add1949c3",
+  "prompts": {},
+  "humans": {
+    "h_67430f944e00e2": {
+      "author": "Andrés González <andres@aulasneo.com>"
+    }
+  },
+  "sessions": {
+    "s_3933249a6cc081": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1b652-c79f-7550-9358-850f2b44d0f6",
+        "model": "gpt-6.1-terra"
+      },
+      "human_author": "Andrés González <andres@aulasneo.com>"
+    }
+  }
+}
